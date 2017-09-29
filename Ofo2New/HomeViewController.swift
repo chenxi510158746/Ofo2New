@@ -16,7 +16,6 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         panelView.layer.cornerRadius = view.frame.width
-        
     }
 
     override func didReceiveMemoryWarning() {
