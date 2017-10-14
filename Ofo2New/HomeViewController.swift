@@ -12,12 +12,52 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var panelView: UIView!
     
+    @IBOutlet weak var btnArrow: UIButton!
+    
+    @IBAction func arrowBtnTap(_ sender: UIButton) {
+        
+        movePaneView()
+    }
+    
+    var isPaneCollapsed = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         panelView.layer.cornerRadius = view.frame.width
     }
 
+    func movePaneView() {
+        
+        let deltaY = panelView.frame.height / 4.5
+        
+        if isPaneCollapsed {
+            
+            btnArrow.setImage(#imageLiteral(resourceName: "arrowup"), for: .normal)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                
+                self.panelView.transform = CGAffineTransform(translationX: 0, y: deltaY)
+                
+            })
+            
+        } else {
+            
+            btnArrow.setImage(#imageLiteral(resourceName: "arrowdown"), for: .normal)
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                
+                self.panelView.transform = .identity
+                
+            })
+            
+        }
+        
+        isPaneCollapsed = !isPaneCollapsed
+        
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
